@@ -17,7 +17,18 @@
     </head>
     <body>
 
-        <p>Hello world! This is HTML5 Boilerplate.</p>
+        <div class="container">
+            <main id="logger">
+              <h3>Task Details</h3>
+              <div class="js-task-form">
+                <input type="text" name="name" placeholder="task name" class="js-task">
+                <input type="number" name="time" min="0" max="8" placeholder="0" class="js-time">
+                <button class="js-log" data-label="Log Work" data-label-alt="Edit Work">Log Work</button>
+              </div>
+
+              <div class="js-list"></div>
+            </main>
+        </div>
 
         <script src="js/main.js"></script>
     </body>
