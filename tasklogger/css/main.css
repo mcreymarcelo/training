@@ -87,12 +87,13 @@ input {
 .js-time { width: 50px; }
 
 .js-list {
-    border: 1px solid black;
+    border: 1px solid #3fd2ff;;
 }
 
 .js-list div:first-child { border: 0; }
 .js-list > div {
-    border-top: 1px dashed black;
+    border-top: 1px dashed #3fd2ff;
+    background: #ddf7ff;
     padding: 0 20px;
 }
 
@@ -121,6 +122,11 @@ input {
 .js-edit { background: green; }
 
 /* EDITING */
+.is-editing.js-task-form,
+.js-list .is-editing {
+    border: 1px solid orange;
+    background: #ffe1bf;
+}
 .is-editing p,
 .is-editing time { color: orange; font-weight: bold; }
 .is-editing input[type='text'],
