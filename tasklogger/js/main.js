@@ -81,46 +81,6 @@ function TaskList(Application){
 
     };
 
-    // Render Only;
-    this.renderOnly = () => {
-        let data = '';
-        this.tasksItems.sort().forEach(item => {
-            data = `<div class='data-list' data-id='${item.id}'>
-                        <p class='data-title' data-title='${item.title}'>${item.title}</p>
-                        <time class='data-time' data-time='${item.time}'>${item.time}</time>
-                        <a class='js-delete'>Delete</a>
-                        <a class='js-edit'>Edit</> 
-                    </div>`;
-        });
-
-        _listWrapper.innerHTML += data;
-        this.editEvent();
-    };
-
-    this.editEvent = () => {
-   
-        let editButton = _listWrapper.querySelectorAll('.js-edit');
-        for( items of editButton ){
-            items.addEventListener('click', event => {
-                event.preventDefault();
-
-                let dataList = document.querySelector('.data-list');
-                let dataTitle = document.querySelector('.data-title');
-                let dataTime = document.querySelector('.data-time');
-
-                alert(event.target.dataTime);
-                dataList.classList.add('is-editing');
-                _form.classList.add('is-editing');
-
-                _form.dataset.editing = dataList.dataset.id;
-                _taskTitle.focus();
-                _taskTitle.value = dataTitle.dataset.title;
-                _taskTime.value = dataTime.dataset.time;
-                _submit.textContent = _submit.dataset.labelAlt;
-            });
-        }
-    }
-
     // Update Total 
     this.totalTime = () => {
         if( this.tasksItems.length > 0 ){ 
@@ -178,8 +138,6 @@ function TaskList(Application){
 
     _submit.addEventListener('click', event => {
         event.preventDefault();
-
-        
 
         if( _form.classList.contains('is-editing') ) {
             this.editItem(_form.dataset.editing, _taskTitle.value, _taskTime.value);
