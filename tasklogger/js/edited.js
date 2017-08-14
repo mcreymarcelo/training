@@ -85,7 +85,7 @@ function TaskList(Application){
     // Render Only;
     this.renderOnly = () => {
         let data = '';
-        this.tasksItems.sort().forEach(item => {
+        this.tasksItems.forEach(item => {
             data = `<div class='data-list'>
                         <p class='data-title'>${item.title}</p>
                         <time class='data-time'>${item.time}</time>
