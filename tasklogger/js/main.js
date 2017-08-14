@@ -82,6 +82,38 @@ function TaskList(Application){
 
     };
 
+    // Render Only;
+    this.renderOnly = () => {
+        let data = '';
+        this.tasksItems.forEach(item => {
+            data = `<div class='data-list' data-id='${item.id}'>
+                        <p>${item.title}</p>
+                        <time>${item.time}</time>
+                        <a class='js-delete'>Delete</a>
+                        <a class='js-edit'>Edit</> 
+                    </div>`;
+            console.log(data);
+        });
+
+        _listWrapper.innerHTML += data;
+        this.editEvent(data);
+    };
+
+    this.editEvent = (pointer) => {
+        let editButton = _listWrapper.querySelector('.js-edit');
+        editButton.addEventListener('click', event => {
+            event.preventDefault();
+
+            _form.classList.add('is-editing');
+            _form.dataset.editing = deliveredTask.id;
+            _taskTitle.focus();
+
+            _taskTitle.value = deliveredTask.title;
+            _taskTime.value = deliveredTask.time;
+            _submit.textContent = _submit.dataset.labelAlt;
+        });
+    }
+
     // Update Total 
     this.totalTime = () => {
         _total = this.tasksItems.map( item => parseInt(item.time) || 0 ).reduce( (sum, value) => sum + value );
@@ -144,6 +176,7 @@ function TaskList(Application){
         }
         
         this.totalTime();
+        //this.renderOnly();
     });
 
 }

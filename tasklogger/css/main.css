@@ -97,12 +97,16 @@ input {
 }
 
 .js-list p,
-.js-list time {
+.js-list time,
+.js-title,
+.js-time {
     display: inline-block;
 }
 
-.js-list p { width: 65%; }
-.js-list time { width: 15%; }
+.js-list p,
+.js-title { width: 65%; }
+.js-list time,
+.js-time { width: 15%; }
 
 .js-edit,
 .js-delete {
@@ -115,6 +119,12 @@ input {
 }
 
 .js-edit { background: green; }
+
+/* EDITING */
+.is-editing p,
+.is-editing time { color: orange; font-weight: bold; }
+.is-editing input[type='text'],
+.is-editing input[type='number'] { border: 1px solid orange; color: orange; }
 
 /* ==========================================================================
    Media Queries
