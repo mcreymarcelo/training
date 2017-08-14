@@ -55,6 +55,12 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+
+body {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 16px;
+}
+
 .container {
     max-width: 50%;
     margin: auto;
@@ -63,24 +69,52 @@ textarea {
 [class*="task-form"] {
     display: flex;
     padding: 20px 0;
-    margin: 0 10px;
     flex-grow: 1;
+    justify-content: space-between;
+
+    background: #ddf7ff;
+    border: 1px solid #3fd2ff;
+    padding: 10px 20px;
 }
 
 input {
     padding: 10px;
-    text-transform: capitalize
-   
+    text-transform: capitalize;
+    margin: 0 10px;
 }
 
+.js-task { width: 300px; }
+.js-time { width: 50px; }
 
+.js-list {
+    border: 1px solid black;
+}
 
+.js-list div:first-child { border: 0; }
+.js-list > div {
+    border-top: 1px dashed black;
+    padding: 0 20px;
+}
 
+.js-list p,
+.js-list time {
+    display: inline-block;
+}
 
+.js-list p { width: 65%; }
+.js-list time { width: 15%; }
 
+.js-edit,
+.js-delete {
+    float: right;
+    display: inline-block;
+    padding: 5px;
+    background: red;
+    color: white;
+    margin: 11px 5px;
+}
 
-
-
+.js-edit { background: green; }
 
 /* ==========================================================================
    Media Queries

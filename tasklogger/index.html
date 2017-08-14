@@ -9,7 +9,7 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
         <link rel="stylesheet" href="css/normalize.min.css">
         <link rel="stylesheet" href="css/main.css">
 
@@ -19,10 +19,11 @@
 
         <div class="container">
             <main id="logger">
-              <h3>Task Details</h3>
+              <h1>Task Logger</h1>
+              <h3>Hours Rendered: <span class='js-total'>0</span></h3>
               <div class="js-task-form">
                 <input type="text" name="name" placeholder="task name" class="js-task">
-                <input type="number" name="time" min="0" max="8" placeholder="0" class="js-time">
+                <input type="number" name="time" placeholder="0" min="1" max="8"class="js-time">
                 <button class="js-log" data-label="Log Work" data-label-alt="Edit Work">Log Work</button>
               </div>
 
