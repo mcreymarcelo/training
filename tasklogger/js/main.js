@@ -65,7 +65,6 @@ function TaskList(Application){
                 item.classList.add('is-deleting');
                 item.dataset.editing = deliveredTask.id;
                 this.deleteItem(item.dataset.editing);
-
             });
 
         }
@@ -124,7 +123,11 @@ function TaskList(Application){
 
     // Update Total 
     this.totalTime = () => {
-        _total = this.tasksItems.map( item => parseInt(item.time) || 0 ).reduce( (sum, value) => sum + value );
+        if( this.tasksItems.length > 0 ){ 
+            _total = this.tasksItems.map( item => parseInt(item.time) || 0 ).reduce( (sum, value) => sum + value );
+        } else {
+            _total = 0; 
+        }
 
         let totalWrapper = document.querySelector('.js-total');
         totalWrapper.textContent = _total; 
@@ -162,6 +165,7 @@ function TaskList(Application){
                               .find( item => item.id == id );
 
         this.tasksItems.splice(_deleteItem.idx, 1);
+        this.totalTime();
         toRemove.remove();
     };
 
