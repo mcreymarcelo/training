@@ -86,11 +86,11 @@ function TaskList(Application){
     this.renderOnly = () => {
         let data = '';
         this.tasksItems.sort().forEach(item => {
-            data = `<div class='data-list' data-id='${item.id}'>
-                        <p class='data-title' data-title='${item.title}'>${item.title}</p>
-                        <time class='data-time' data-time='${item.time}'>${item.time}</time>
+            data = `<div class='data-list'>
+                        <p class='data-title'>${item.title}</p>
+                        <time class='data-time'>${item.time}</time>
                         <a class='js-delete'>Delete</a>
-                        <a class='js-edit'>Edit</> 
+                        <a class='js-edit' data-title='${item.title}' data-time='${item.time}' data-id='${item.id}'>Edit</> 
                     </div>`;
         });
 
@@ -105,18 +105,16 @@ function TaskList(Application){
             items.addEventListener('click', event => {
                 event.preventDefault();
 
-                let dataList = document.querySelector('.data-list');
-                let dataTitle = document.querySelector('.data-title');
-                let dataTime = document.querySelector('.data-time');
+                let currentList = document.querySelector('.data-list');
+                let currentTarget = event.target;
 
-                alert(event.target.dataTime);
-                dataList.classList.add('is-editing');
+                currentList.classList.add('is-editing');
                 _form.classList.add('is-editing');
 
-                _form.dataset.editing = dataList.dataset.id;
+                _form.dataset.editing = currentTarget.dataset.id;
                 _taskTitle.focus();
-                _taskTitle.value = dataTitle.dataset.title;
-                _taskTime.value = dataTime.dataset.time;
+                _taskTitle.value = currentTarget.dataset.title;
+                _taskTime.value = currentTarget.dataset.time;
                 _submit.textContent = _submit.dataset.labelAlt;
             });
         }
@@ -134,7 +132,7 @@ function TaskList(Application){
     this.addItem = () => {
         let addedItem = new Task( _ctr, _taskTitle.value, _taskTime.value );
 
-        renderItems(addedItem);
+        //renderItems(addedItem);
         this.tasksItems.push(addedItem); 
         _ctr++;   
 
@@ -184,6 +182,7 @@ function TaskList(Application){
         }
         
         this.totalTime();
+        this.renderOnly();
     });
 
 }
