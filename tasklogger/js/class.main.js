@@ -14,7 +14,7 @@ class TaskList {
 
 	constructor(application){
 
-		this.localStore       = window.localStorage;
+		this.localStore  = window.localStorage;
 
 		this.application = document.getElementById(application);
     this.form        = this.application.querySelector('.js-task-form');
