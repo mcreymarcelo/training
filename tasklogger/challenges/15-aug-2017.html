@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <main id="app">
+      <h1>Task Logger</h1>
+      <h3>Hours Rendered: <span class='js-total'>0</span></h3>
+      <div class="js-task-form">
+        <input type="text" name="name" placeholder="task name" class="js-task-name">
+        <input type="number" name="time" placeholder="0" min="1" max="8" class="js-task-time">
+        <button class="js-submit" data-label="Log Work" data-label-alt="Edit Work">Log Work</button>
+      </div>
+
+      <div class="js-list"></div>
+    </main>
+
+    <script type="text/javascript">
+      const Observer = (function ( id ) {
+        const context = ( typeof id === 'undefined' )? document : id;
+        const topics = {};
+        const hOP = topics.hasOwnProperty;
+
+        return {
+          subscribe (topic, listener) {
+            // Create the topic's object if not yet created
+            if(!hOP.call(topics, topic)) topics[topic] = [];
+
+            // Add the listener to queue
+            var index = topics[topic].push(listener) -1;
+
+            // Provide handle back for removal of topic
+            return {
+              remove () {
+                delete topics[topic][index];
+              }
+            };
+          },
+          publish (topic, info) {
+            // If the topic doesn't exist, or there's no listeners in queue, just leave
+            if(!hOP.call(topics, topic)) return;
+
+            // Cycle through topics queue, fire!
+            topics[topic].forEach(function (item) {
+              item(info != undefined ? info : {});
+            });
+          }
+        };
+      });
+
+      class Task {
+        constructor({ id = NaN, title = '', time = NaN, project = '', observer }) {
+          this.id = id;
+          this.title = title;
+          this.time = time;
+          this.project = project;
+
+          // @TODO: CONSTRUCT HTML ELEMENTS HERE
+        }
+
+        editItem() {
+
+        }
+
+        deleteItem() {
+
+        }
+      }
+
+      class TaskList {
+        constructor(context) {
+          this.items = [];
+          this.context = document.querySelector(context);
+          this.observer = new Observer();
+          this.el = {
+            form: this.context.querySelector('.js-task-form'),
+            taskTitle: this.context.querySelector('.js-task-name'),
+            taskTime: this.context.querySelector('.js-task-time'),
+            submit: this.context.querySelector('.js-submit'),
+            list: this.context.querySelector('.js-list')
+          };
+
+          this.observer.subscribe('render/items', () => {
+            this.renderItems();
+          });
+        }
+
+        addTask(options = { id: NaN, title: '', time: NaN, project: '' }) {
+          if(isNaN(options.id) || isNaN(options.time)) {
+            console.error(new TypeError('Task requires a valid ID and Time'));
+            return;
+          }
+
+          // @TODO: CREATE ADDITIONAL VALIDATION PROCEDURES
+
+          options.observer = this.observer;
+          let _task = new Task(options);
+
+          this.items.push(_task);
+          this.observer.publish('render/items');
+        }
+
+        renderItems() {
+          this.el.list.innerHTML = '';
+          this.items.reverse().forEach(item => {
+            this.el.list.innerHTML += `<div class="task-item" data-id="${item.id}">
+              <p class="task-title">${item.title}</p>
+              <time class="task-time">${item.time}</time>
+              <a class="js-delete" data-id="${item.id}">Delete</a>
+              <a class="js-edit" data-id="${item.id}" data-title="${item.title}" data-time="${item.time}">Edit</a>
+            </div>`;
+          });
+        }
+      }
+
+      const TaskLogger = new TaskList('#app');
+    </script>
+  </body>
+</html>
