@@ -32,7 +32,6 @@ class TaskList {
 		this.idCtr       = 100;
 		this.total       = 0;
 
-		console.log( this.taskItems );
 
 		_submit.addEventListener('click', event => {
 
