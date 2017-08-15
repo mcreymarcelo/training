@@ -8,12 +8,13 @@ class Task {
 
 	}
 
-
 }
 
 class TaskList {
 
 	constructor(application){
+
+		this.localStore       = window.localStorage;
 
 		this.application = document.getElementById(application);
     this.form        = this.application.querySelector('.js-task-form');
@@ -26,9 +27,12 @@ class TaskList {
     this.sourceTitle = this.form.querySelector('.js-task');
     this.sourceTime  = this.form.querySelector('.js-time');
 
-		this.taskItems   = [];
+		this.taskItems   = ( localStorage['array'] || null ) ? JSON.parse(localStorage['array']) : [];
+		this.temp        = [];
 		this.idCtr       = 100;
 		this.total       = 0;
+
+		console.log( this.taskItems );
 
 		_submit.addEventListener('click', event => {
 
@@ -89,6 +93,8 @@ class TaskList {
     this.totalHours();
     toRemove.remove();
 
+    this.updateLocalVariable();
+
 	}	
 
 
@@ -97,7 +103,7 @@ class TaskList {
 
 		const _editItem      = this.taskItems.find(item => item.id === deliveredTasks.id);  
 		this.taskItems.title = _editItem.title;
-		this.taskItems.timee = _editItem.time;
+		this.taskItems.time = _editItem.time;
 
 	}
 
@@ -117,13 +123,14 @@ class TaskList {
     let totalWrapper       = document.querySelector('.js-total');
     totalWrapper.innerHTML = this.total; 
 
+    this.localStore = this.taskItems;
+
 	}
 
 	// Display Items
 	displayList(){
 
 		this.listWrapper.innerHTML = '';
-
 
 		let viewItems = this.taskItems.map(item => {
 			return `<div class="task-item" data-id="${item.id}">
@@ -139,6 +146,7 @@ class TaskList {
 		this.totalHours();
 		this.editEvent();
 		this.deleteEvent();
+		this.updateLocalVariable();
 
 	}
 
@@ -152,6 +160,15 @@ class TaskList {
     this.form.classList.remove('is-editing');
 
 	}
+
+
+	// Update LocalStorage base on current Task Item value
+	updateLocalVariable(){
+
+		localStorage["array"] = JSON.stringify(this.taskItems);
+
+	}
+
 
 
 	// Edit Event
@@ -219,6 +236,7 @@ class TaskList {
 
 		}
 
+
 	}
 
 
@@ -226,3 +244,4 @@ class TaskList {
 
 const Tasks = new Task(1, 'Sample', '8');
 const App = new TaskList('logger');
+App.displayList();
