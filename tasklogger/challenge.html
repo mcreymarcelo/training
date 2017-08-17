@@ -1,0 +1,53 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+        <link rel="stylesheet" href="css/normalize.min.css">
+        <link rel="stylesheet" href="css/class.main.css">
+
+        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    </head>
+    <body>
+
+        <div class="container">
+            <main id="logger">
+              <h1>Task Logger</h1>
+              <h3>Hours Rendered: <span class='js-total'>0</span></h3>
+              <div class="panels js-task-form">
+                <div class="panel">
+                  <label>Task Description</label>
+                  <input type="text" name="name" placeholder="task name" class="js-task-name">
+                </div>
+
+                <div class="panel">
+                  <label>Project</label>
+                  <input type="text" name="name" placeholder="project name" class="js-task-project">
+                </div>
+
+                <div class="panel">
+                  <label>Hours Spent</label>
+                  <input type="number" name="time" placeholder="0" min="1" max="8" class="js-task-time">
+                </div>
+                    
+                <div class="panel">
+                  <label>&nbsp;</label>
+                  <button class="js-task-log" data-label="Log Work" data-label-alt="Edit Work">Log Work</button>
+                </div>
+              </div>
+
+              <div class="js-task-list"></div>
+            </main>
+        </div>
+        
+        <script src="js/class.observer.js"></script>
+        <script src="js/class.challenge.js"></script>
+    </body>
+</html>

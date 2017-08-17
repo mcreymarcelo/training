@@ -243,4 +243,3 @@ class TaskList {
 
 const Tasks = new Task(1, 'Sample', '8');
 const App = new TaskList('logger');
-App.displayList();
