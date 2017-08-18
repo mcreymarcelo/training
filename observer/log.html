@@ -1,0 +1,59 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Task Logger</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+        <link rel="stylesheet" href="css/normalize.min.css">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    </head>
+    <body>
+
+        <main id="observer">
+            <div class="container">
+                <h1>Task Logger</h1>
+                <h3>Hours Rendered: <span class="js-task-total">0</span></h3>
+                <div class="tasklogger" id="logger">
+                    <div class="js-confirmation">
+                        <h2>Are you sure you want to delete this task?</h2>
+                        <button class="js-button--yes">Yes</button>
+                        <button class="js-button--no">No</button>
+                    </div>
+                    <div class="panels js-task-form">
+                        <div class="panel">
+                            <label>Task:</label>
+                            <input type="text" name="" class="js-task-name" placeholder="Task Name">
+                        </div>
+
+                        <div class="panel">
+                            <label>Project:</label>
+                            <input type="text" name="" class="js-task-project" placeholder="Project Name">
+                        </div>
+
+                        <div class="panel">
+                            <label>Hours:</label>
+                            <input type="number" value="1" name="" min="1" max="8" class="js-task-time">
+                        </div>
+
+                        <div class="panel">
+                            <label>&nbsp;</label>
+                            <button class="js-task-log" data-label-normal="Log Work" data-label-edit="Edit Work">Log Work</button>
+                        </div>
+                    </div>
+                    <div class="js-error"></div>
+                    <div class="js-task-list">
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <script src="js/log.js"></script>
+    </body>
+</html>
