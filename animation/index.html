@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Keyframe Animation</title>
+	<style type="text/css">
+		.image-container {
+			width: 600px;
+			height: 300px;
+			margin: 20px auto;
+			overflow: hidden;
+		}
+
+		.image-container img {
+			animation: sample 10s infinite;
+		}
+
+		@keyframes sample {
+			0% {
+				opacity: 0;
+			}
+			5% {
+				opacity: 1;
+			}
+			50% {
+				transform: scale3d(1.2,1.2,1.2) translateX(-50%);
+				animation-timing-function: ease-in-out;
+			}
+			90% {
+				transform: scale3d(1,1,1) translateX(0);
+				opacity: 0.8;
+			}
+			100% {
+				opacity: 0;
+			}
+		}
+	</style>
+</head>
+<body>
+	<h1>Animation using CSS Keyframe</h1>
+	<div class="image-container">
+		<img src="https://unsplash.it/1600/300">
+	</div>
+</body>
+</html>
